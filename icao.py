@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 print("Digite o código ICAO desejado: ", end="")
 icao = input()
@@ -60,4 +60,27 @@ else:
             print(tag.text + ":")
 
         if (tag.name == 'hr' and 'id' in tag.attrs and tag.attrs['id'] == 'cartas'):
+            break
+
+
+print()
+
+cartas_hr = soup.find("hr", {"id": "cartas"})
+if (cartas_hr == None):
+    print("Cartas:")
+    print("Não disponiveis!")
+else:
+    for tag in cartas_hr.next_siblings:
+        if isinstance(tag, NavigableString):
+            continue
+
+        if tag.name == 'h4':
+            print(tag.text + ":")
+
+        if (tag.name == 'ul'):
+            children = tag.findAll("a" , recursive=True)
+            for child in children:
+                print("    " + child.text + " (" + str(child.attrs['href']) + ")")
+
+        if (tag.name == 'hr' and 'id' in tag.attrs and tag.attrs['id'] == 'rotas'):
             break
