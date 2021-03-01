@@ -15,3 +15,10 @@ except:
     exit()
 
 soup = BeautifulSoup(html_request.content, 'html.parser')
+
+# Search response for any alert div with "O aeródromo não foi encontrado" as content
+# In this case ICAO is invalid
+for div in soup.findAll("div", {"class": "alert"}):
+    if "O aeródromo não foi encontrado" in str(div):
+        print ("Aeródromo com o código ICAO fornecido não encontrado!")
+        exit()
