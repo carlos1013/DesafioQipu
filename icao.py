@@ -42,3 +42,22 @@ if (sunset == None):
     print("Não disponivel!")
 else:
     print(sunset.text)
+
+print()
+
+# Search for hr with "met" as Id
+met_hr = soup.find("hr", {"id": "met"})
+print("Informações TAF/METAR:")
+
+if (met_hr == None):
+    print("Não disponiveis!")
+else:
+    for tag in met_hr.next_siblings:
+        if (tag.name == 'p' and tag.text != ""):
+            print(tag.text)
+        
+        if (tag.name == 'h5'):
+            print(tag.text + ":")
+
+        if (tag.name == 'hr' and 'id' in tag.attrs and tag.attrs['id'] == 'cartas'):
+            break
