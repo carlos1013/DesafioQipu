@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 print("Digite o código ICAO desejado: ", end="")
 icao = input()
@@ -13,4 +14,4 @@ except:
     print("Uma exceção ocorreu durante a requisição da página, tente novamente")
     exit()
 
-print(html_request)
+soup = BeautifulSoup(html_request.content, 'html.parser')
