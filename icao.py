@@ -22,3 +22,23 @@ for div in soup.findAll("div", {"class": "alert"}):
     if "O aeródromo não foi encontrado" in str(div):
         print ("Aeródromo com o código ICAO fornecido não encontrado!")
         exit()
+
+print()
+
+# Print sunrise info
+print("Nascer do sol:")
+sunrise = soup.find(name='sunrise')
+# If there isn't any sunrise tags, then this info is unavailable
+if (sunrise == None):
+    print("Não disponivel!")
+else:
+    print(sunrise.text)
+
+# Print sunset info
+print("Pôr do sol:")
+sunset = soup.find(name='sunset')
+# If there isn't any sunset tags, then this info is unavailable
+if (sunset == None):
+    print("Não disponivel!")
+else:
+    print(sunset.text)
