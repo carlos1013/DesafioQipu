@@ -1,5 +1,5 @@
 # DesafioQipu
-Desafio utilizado durante o processo seletivo do Qipu
+Desafio realizado durante o processo seletivo do Qipu
 
 Bibliotecas necessárias:\
 &nbsp;&nbsp;&nbsp;&nbsp;requests (pip install requests)\
